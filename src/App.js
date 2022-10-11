@@ -12,7 +12,7 @@ export default function Form() {
     temperature: "15"
   };
   return (
-    <div className="App">
+    <div className="A">
     <div className="container">
       <form>
         <input type="text" name="Enter city" placeholder="Enter city"></input>

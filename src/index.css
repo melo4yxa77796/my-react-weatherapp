@@ -22,9 +22,11 @@ button {
 span{color: darkorange;
   border: 1px solid;
   text-transform: capitalize;}
+  footer{text-align: center;}
 .container {
   padding:20px;
   margin-bottom: 20px;
   border:1px solid red;
   background-color: #e3dfc9;
 }
+
