@@ -1,6 +1,7 @@
 import "./styles.css";
 import City from "./City";
 import Date from "./Date";
+
 export default function Form() {
   let weatherData = {
     description: "Cloudy",
@@ -11,6 +12,7 @@ export default function Form() {
     temperature: "15"
   };
   return (
+    <div className="App">
     <div className="container">
       <form>
         <input type="text" name="Enter city" placeholder="Enter city"></input>
@@ -40,7 +42,11 @@ export default function Form() {
           {weatherData.temperature}º <a href="/">C</a>|<a href="/">F</a>
         </h2>
       </div>
-    </div>
+    </div> 
+    <footer><a href="https://github.com/melo4yxa77796/my-react-weatherapp" rel="noreferrer" target="_blank">Open source code</a></footer>
+  
+  </div>
   );
+ 
 }
 
