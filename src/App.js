@@ -1,52 +1,72 @@
 import "./styles.css";
 import City from "./City";
 import Date from "./Date";
+import axios from "axios";
+import React, { useState} from"react";
+
 
 export default function Form() {
-  let weatherData = {
-    description: "Cloudy",
-    imgUrl:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_dW9BxFRsnGdfnjb9AqZGVBXlrQKKNenzaYqzcrlA2jIuPruDHxxdxB8vbPw-poubl1k&usqp=CAU",
-    humidity: "80",
-    wind: "4",
-    temperature: "15"
-  };
-  return (
-    <div className="A">
-    <div className="container">
-      <form>
-        <input type="text" name="Enter city" placeholder="Enter city"></input>
-        <input type="submit" value="Submit" class="btn btn-success"></input>
-      </form>
-      <button>Current</button>
-      <City />
-      <Date />
-      <span className="">{weatherData.description}</span>
-      <div className="row">
-        <div className="col-6">
-          <img
-            src={weatherData.imgUrl}
-            alt={weatherData.description}
-            className=""
-          ></img>
-        </div>
-        <div className="col-6">
-          <ul>
-            <li>Humidity:{weatherData.humidity}%</li>{" "}
-            <li>Wind:{weatherData.wind} m/s</li>
-          </ul>
-        </div>
-      </div>
-      <div className="Temperature">
-        <h2>
-          {weatherData.temperature}º <a href="/">C</a>|<a href="/">F</a>
-        </h2>
-      </div>
-    </div> 
-    <footer><a href="https://github.com/melo4yxa77796/my-react-weatherapp" rel="noreferrer" target="_blank">Open source code</a></footer>
   
-  </div>
-  );
+const[weatherData,setWeatherData]=useState({ready:false});
+
+function handleResponse(response){
+  console.log(response.data);
+  setWeatherData({
+    ready:true,
+    description:response.data.weather[0].description,
+    iconUrl:response.data.weather[0].description.icon,
+    temperature: response.data.main.temp,
+  wind:response.data.wind.speed,
+  humidity:response.data.main.humidity,
+city:response.data.name});
  
 }
+if(weatherData.ready){
+  return (
+  <div className="A">
+  <div className="container">
+    <form>
+      <input type="text" name="Enter city" placeholder="Enter city"></input>
+      <input type="submit" value="Submit" class="btn btn-success"></input>
+    </form>
+    <button>Current</button>
+    <City />
+    <Date />
+    <span className="text-capitalize">{weatherData.description}</span>
+    <div className="row">
+      <div className="col-6">
+        <img
+          src={weatherData.iconUrl}
+          alt={weatherData.description}
+          className=""
+        ></img>
+      </div>
+      <div className="col-6">
+        <ul>
+          <li>Humidity:{weatherData.humidity}%</li>{" "}
+          <li>Wind:{Math.round(weatherData.wind)} m/s</li>
+        </ul>
+      </div>
+    </div>
+    <div className="Temperature">
+      <h2>
+        {Math.round(weatherData.temperature)}º <a href="/">C</a>|<a href="/">F</a>
+      </h2>
+    </div>
+  </div> 
+  <footer><a href="https://github.com/melo4yxa77796/my-react-weatherapp" rel="noreferrer" target="_blank">Open source code</a></footer>
 
+</div>
+);
+
+}
+else{const apiKey="3fc4a1a542593e4089e587a81b28f31f";
+  let city="Kharkiv";
+  let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(handleResponse);
+  return"Loading";
+  }
+
+}
+
+  
