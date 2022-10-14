@@ -18,6 +18,7 @@ function handleResponse(response){
     temperature: response.data.main.temp,
   wind:response.data.wind.speed,
   humidity:response.data.main.humidity,
+  date:new Date(response.data.dt*1000),
 city:response.data.name});
  
 }
@@ -31,7 +32,7 @@ if(weatherData.ready){
     </form>
     <button>Current</button>
     <h1>{weatherData.city}</h1>
-    <Date />
+    <Date date={weatherData.date}/>
     <span className="text-capitalize">{weatherData.description}</span>
     <div className="row">
       <div className="col-6">
