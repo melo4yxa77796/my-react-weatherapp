@@ -1,11 +1,11 @@
 import "./styles.css";
-import City from "./City";
+
 import Date from "./Date";
 import axios from "axios";
 import React, { useState} from"react";
 
 
-export default function Form() {
+export default function Form(props) {
   
 const[weatherData,setWeatherData]=useState({ready:false});
 
@@ -14,7 +14,7 @@ function handleResponse(response){
   setWeatherData({
     ready:true,
     description:response.data.weather[0].description,
-    iconUrl:response.data.weather[0].description.icon,
+    iconUrl:response.data.weather[0].icon,
     temperature: response.data.main.temp,
   wind:response.data.wind.speed,
   humidity:response.data.main.humidity,
@@ -30,7 +30,7 @@ if(weatherData.ready){
       <input type="submit" value="Submit" class="btn btn-success"></input>
     </form>
     <button>Current</button>
-    <City />
+    <h1>{weatherData.city}</h1>
     <Date />
     <span className="text-capitalize">{weatherData.description}</span>
     <div className="row">
@@ -61,8 +61,8 @@ if(weatherData.ready){
 
 }
 else{const apiKey="3fc4a1a542593e4089e587a81b28f31f";
-  let city="Kharkiv";
-  let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(handleResponse);
   return"Loading";
   }
