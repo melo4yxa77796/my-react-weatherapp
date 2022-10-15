@@ -1,6 +1,6 @@
 import "./styles.css";
 
-import Date from "./Date";
+import FormatDate from "./FormatDate";
 import axios from "axios";
 import React, { useState} from"react";
 
@@ -14,7 +14,7 @@ function handleResponse(response){
   setWeatherData({
     ready:true,
     description:response.data.weather[0].description,
-    iconUrl:response.data.weather[0].icon,
+    iconUrl:`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     temperature: response.data.main.temp,
   wind:response.data.wind.speed,
   humidity:response.data.main.humidity,
@@ -32,7 +32,7 @@ if(weatherData.ready){
     </form>
     <button>Current</button>
     <h1>{weatherData.city}</h1>
-    <Date date={weatherData.date}/>
+    <FormatDate date={weatherData.date}/>
     <span className="text-capitalize">{weatherData.description}</span>
     <div className="row">
       <div className="col-6">
