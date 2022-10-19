@@ -16,7 +16,7 @@ export default function Date(props) {
   return (
     <div className="Time">
       <div className="row">
-        <div className="col-6">{day}{hours}:{minutes}</div>
+        <div className="col-6">{day}{""}{hours}:{minutes}</div>
         <div className="col-6">
           Today:<span className="Today">{month}</span>
         </div>
