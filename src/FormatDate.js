@@ -2,11 +2,12 @@ import React from "react";
 
 
 export default function Date(props) {
- 
+ let date=props.date.getDate();
  let days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
  let day=days[props.date.getDay()];
- let months=["0","1","2","3","4","5","6","7","8","9","10","11"];
- let month=months[props.date.getMonth()];
+let year=props.date.getFullYear();
+ let month=props.date.getMonth()+1;
+ if(month<10){month=`0${month}`};
  let hours=props.date.getHours();
  if(hours<10){hours=`0${hours}`};
  let minutes=props.date.getMinutes();
@@ -18,7 +19,7 @@ export default function Date(props) {
       <div className="row">
         <div className="col-6">{day}{""}{hours}:{minutes}</div>
         <div className="col-6">
-          Today:<span className="Today">{month}</span>
+          Today:<span className="Today">{date}:{month}:{year}</span>
         </div>
       </div>
     </div>
