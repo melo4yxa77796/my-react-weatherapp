@@ -1,5 +1,6 @@
 import "./styles.css";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 
 import axios from "axios";
 import React, { useState} from"react";
@@ -14,6 +15,7 @@ function handleResponse(response){
   console.log(response.data);
   setWeatherData({
     ready:true,
+    coord:response.data.coord,
     description:response.data.weather[0].description,
     icon:response.data.weather[0].icon,
     temperature: response.data.main.temp,
@@ -52,7 +54,7 @@ if(weatherData.ready){
     </form>
     <button>Current</button>
     <WeatherInfo data={weatherData}/>
-    
+    <WeatherForecast coord={weatherData.coord}/>
   </div> 
   <footer><a href="https://github.com/melo4yxa77796/my-react-weatherapp" rel="noreferrer" target="_blank">Open source code</a></footer>
 
