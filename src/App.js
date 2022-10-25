@@ -10,6 +10,7 @@ export default function Form(props) {
   
 const[weatherData,setWeatherData]=useState({ready:false});
 const[city,setCity]=useState(props.defaultCity);
+
 function handleResponse(response){
 
   console.log(response.data);
@@ -39,6 +40,7 @@ function handleCityChange(event){
 
 }
 
+
 function search(){const apiKey="3fc4a1a542593e4089e587a81b28f31f";
 
   let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -52,11 +54,11 @@ if(weatherData.ready){
       <input type="search" className="Enter city" placeholder="Enter city" autoFocus="on" onChange={handleCityChange}></input>
       <input type="submit" value="Submit" class="btn btn-success"></input>
     </form>
-    <button>Current</button>
+    <button >Current</button>
     <WeatherInfo data={weatherData}/>
     <WeatherForecast coord={weatherData.coord}/>
   </div> 
-  <footer><a href="https://github.com/melo4yxa77796/my-react-weatherapp" rel="noreferrer" target="_blank">Open source code</a></footer>
+  <footer><a href="https://github.com/melo4yxa77796/my-react-weatherapp" rel="noopener noreferrer" target="_blank">Open source code</a></footer>
 
 </div>
 );

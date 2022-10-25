@@ -16,14 +16,14 @@ export default function WeatherTemperature(props){
   if(unit==="celsius"){return (
         <div className="Temperature">
     <h2>
-      {Math.round(props.celsius)}º <a href="/">C</a>|<a href="/" onClick={convertToFahrenheit}>F</a>
+      {Math.round(props.celsius)}º <a href="/" rel="noopener noreferrer">C</a>|<a href="/" onClick={convertToFahrenheit} rel="noopener noreferrer">F</a>
     </h2>
   </div>);
   }else{
     
     return (<div className="Temperature">
     <h2>
-      {Math.round(fahrenheit())}º <a href="/">C</a>|<a href="/" onClick={convertToCelsius}>F</a>
+      {Math.round(fahrenheit())}º <a href="/" rel="noopener noreferrer">C</a>|<a href="/" onClick={convertToCelsius} rel="noopener noreferrer">F</a>
     </h2>
   </div>);
   }
